@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
-// import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_DEFAULT } from 'react-native-maps';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -29,6 +29,7 @@ export default function HomeScreen() {
         <Pressable
           style={styles.searchIcon}
           onPress={() => {
+            // This will eventually trigger AI search logic
             console.log('Search submitted:', searchText);
           }}
         >
@@ -36,11 +37,24 @@ export default function HomeScreen() {
         </Pressable>
       </View>
 
-      {/* Placeholder instead of MapView */}
+      {/* Apple Map Placeholder */}
       <View style={styles.mapContainer}>
-        <View style={styles.placeholder}>
-          <Text style={styles.placeholderText}>[ Map Placeholder – Web version ]</Text>
-        </View>
+        <MapView
+          provider={PROVIDER_DEFAULT}
+          style={styles.map}
+          initialRegion={{
+            latitude: -37.721,
+            longitude: 145.046,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          }}
+        >
+          <Marker
+            coordinate={{ latitude: -37.721077, longitude: 145.047977 }}
+            title="Agora"
+            description="My Coffee"
+          />
+        </MapView>
       </View>
     </View>
   );
@@ -91,19 +105,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 8,
     overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  placeholder: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  placeholderText: {
-    color: '#888',
-    fontStyle: 'italic',
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
