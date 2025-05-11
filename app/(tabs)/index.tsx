@@ -3,7 +3,7 @@ import { getApps, initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Alert, Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-const { firebaseConfig } = require('../../firebase.client');
+const { firebaseConfig } = require('../../firebase');
 
 // Initialize Firebase only once
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];

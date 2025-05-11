@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { Alert, Button, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { firebaseConfig } from '../../firebase.client';
+import { firebaseConfig } from '../../firebase';
 
 // Initialize Firebase and Firestore
 const app = initializeApp(firebaseConfig);
